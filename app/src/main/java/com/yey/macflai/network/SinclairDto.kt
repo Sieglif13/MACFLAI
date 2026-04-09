@@ -15,3 +15,7 @@ data class RetroalimentarRequest(
     val opcion_usuario: String,
     val opcion_correcta: String
 )
+
+data class RetroalimentarResponse(
+    val explicacion: String
+)
