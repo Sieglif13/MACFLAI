@@ -2,6 +2,12 @@ package com.yey.macflai.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val SoftBlue = Color(0xFFE3F2FD)
+val DarkBlue = Color(0xFF1565C0)
+val SelectedBlue = Color(0xFFBBDEFB)
+val LightGray = Color(0xFFF5F5F5)
+val TextGray = Color(0xFF424242)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
