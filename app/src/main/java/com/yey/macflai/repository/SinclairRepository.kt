@@ -4,6 +4,7 @@ import android.util.Log
 import com.yey.macflai.data.DesafioEntity
 import com.yey.macflai.data.MacflaiDao
 import com.yey.macflai.network.GenerarDesafioRequest
+import com.yey.macflai.network.RetroalimentarRequest
 import com.yey.macflai.network.SinclairApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -80,4 +81,6 @@ class SinclairRepository(
             }
         }
     }
+
+    suspend fun retroalimentar(request: RetroalimentarRequest) = api.retroalimentar(request)
 }

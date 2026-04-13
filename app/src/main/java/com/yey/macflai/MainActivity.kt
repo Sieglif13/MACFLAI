@@ -7,7 +7,9 @@ import androidx.activity.viewModels
 import com.yey.macflai.ui.navigation.MacflaiNavGraph
 import com.yey.macflai.ui.theme.MACFLAITheme
 import com.yey.macflai.viewmodel.SinclairViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel: SinclairViewModel by viewModels()
 

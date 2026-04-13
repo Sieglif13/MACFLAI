@@ -6,8 +6,10 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.yey.macflai.worker.CleanupWorker
+import dagger.hilt.android.HiltAndroidApp
 import java.util.concurrent.TimeUnit
 
+@HiltAndroidApp
 class MacflaiApp : Application() {
     override fun onCreate() {
         super.onCreate()

@@ -1,14 +1,13 @@
 package com.yey.macflai.viewmodel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yey.macflai.data.AppDatabase
 import com.yey.macflai.data.DesafioEntity
 import com.yey.macflai.network.RetroalimentarRequest
-import com.yey.macflai.network.SinclairNetwork
 import com.yey.macflai.repository.SinclairRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,10 +24,10 @@ sealed class SinclairUiState {
     ) : SinclairUiState()
 }
 
-class SinclairViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val dao = AppDatabase.getDatabase(application).macflaiDao()
-    private val repository = SinclairRepository(dao, SinclairNetwork.api)
+@HiltViewModel
+class SinclairViewModel @Inject constructor(
+    private val repository: SinclairRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<SinclairUiState>(SinclairUiState.Idle)
     val uiState: StateFlow<SinclairUiState> = _uiState.asStateFlow()
@@ -84,7 +83,7 @@ class SinclairViewModel(application: Application) : AndroidViewModel(application
                     opcion_usuario = opcionSeleccionada,
                     opcion_correcta = desafioActual.respuestaCorrecta
                 )
-                val response = SinclairNetwork.api.retroalimentar(request)
+                val response = repository.retroalimentar(request)
                 
                 val latestState = _uiState.value
                 if (latestState is SinclairUiState.Success) {

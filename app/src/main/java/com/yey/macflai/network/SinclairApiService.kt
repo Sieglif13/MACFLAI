@@ -25,28 +25,3 @@ interface SinclairApiService {
     }
 }
 
-object SinclairNetwork {
-    private val client by lazy {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-        OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .writeTimeout(120, TimeUnit.SECONDS)
-            .build()
-    }
-
-    private val retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl(SinclairApiService.BASE_URL)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    val api: SinclairApiService by lazy {
-        retrofit.create(SinclairApiService::class.java)
-    }
-}
