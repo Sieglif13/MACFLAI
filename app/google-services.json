@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "629837802782",
+    "project_id": "macflai-2e118",
+    "storage_bucket": "macflai-2e118.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629837802782:android:2342abbbac2f042ed4ad0f",
+        "android_client_info": {
+          "package_name": "com.yey.macflai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLcfYDDQVL9-D7jW6XxNMuc6ek-M2hQBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
