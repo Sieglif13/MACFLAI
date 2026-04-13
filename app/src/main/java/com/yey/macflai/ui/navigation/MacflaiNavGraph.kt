@@ -7,19 +7,33 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yey.macflai.ui.screens.AxisDetailScreen
 import com.yey.macflai.ui.screens.HomeScreen
+import com.yey.macflai.ui.screens.LoginScreen
 import com.yey.macflai.ui.screens.QuizScreen
+import com.yey.macflai.viewmodel.AuthUiState
+import com.yey.macflai.viewmodel.AuthViewModel
 import com.yey.macflai.viewmodel.SinclairViewModel
 
 @Composable
 fun MacflaiNavGraph(
     viewModel: SinclairViewModel,
+    authViewModel: AuthViewModel,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = "home"
+    startDestination: String = "login"
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
+        composable("login") {
+            LoginScreen(
+                viewModel = authViewModel,
+                onLoginSuccess = {
+                    navController.navigate("home") {
+                        popUpTo("login") { inclusive = true }
+                    }
+                }
+            )
+        }
         composable("home") {
             HomeScreen(
                 onNavigateToAxis = { axisId ->

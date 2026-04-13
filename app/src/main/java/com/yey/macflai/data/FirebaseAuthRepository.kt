@@ -39,4 +39,25 @@ class FirebaseAuthRepository(
             displayName = user.displayName
         )
     }
+
+    override suspend fun signInWithGoogleCredential(idToken: String): Result<User> {
+        return try {
+            val credential = com.google.firebase.auth.GoogleAuthProvider.getCredential(idToken, null)
+            val authResult = auth.signInWithCredential(credential).await()
+            val user = authResult.user
+            if (user != null) {
+                Result.success(
+                    User(
+                        uid = user.uid,
+                        email = user.email,
+                        displayName = user.displayName
+                    )
+                )
+            } else {
+                Result.failure(Exception("Hubo un error validando la credencial"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
 }
